@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user
-  has_many :mark
+  has_many :marks
   accepts_nested_attributes_for :user
 
   validates :header, presence: true

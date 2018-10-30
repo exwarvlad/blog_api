@@ -19,6 +19,16 @@ module PostService
       end
     end
 
+    def give_top_posts(params)
+      return false if params[:n].nil? || params[:n].to_i < 0
+      top_n = Post.joins(:marks)
+                  .group(:post_id)
+                  .order('avg(num)')
+                  .pluck('post_id, avg(num)')
+                  .last(params[:n].to_i)
+      Post.where(id: top_n.map(&:first)).pluck(:header, :body, :id)
+    end
+
     private
 
     def set_params_with_user(params)
