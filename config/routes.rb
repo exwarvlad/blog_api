@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  resources :posts, only: [:index, :create]
+  resource :posts, only: [:create] do
+    post :create_mark
+  end
 end

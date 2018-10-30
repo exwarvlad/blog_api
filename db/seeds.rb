@@ -7,3 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 %x(curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d ' {"post": {"header":"x-fa-fafds","body":"yoyoy4242", "ip":"127.0.0.1", "user_login": "ttt424242"}}'  http://localhost:3000/posts)
+%x(curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d ' {"mark": {"num": 5, "post_id": 25}}'  http://localhost:3000/posts/create_mark)
