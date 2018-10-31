@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   end
 
   def create_mark
-    @mark = PostService.create_mark(params_post_mark)
+    @mark = PostService.create_mark(post_mark_params)
 
     if @mark
       render json: @mark, status: 200
@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   end
 
   def give_top_posts
-    @result = PostService.give_top_posts(params_top_posts)
+    @result = PostService.give_top_posts(top_posts_params)
 
     if @result
       render json: @result, status: 200
@@ -41,11 +41,11 @@ class PostsController < ApplicationController
     params.require(:post).permit(:header, :body, :ip, :user_login)
   end
 
-  def params_post_mark
+  def post_mark_params
     params.require(:post).permit(:num, :post_id)
   end
 
-  def params_top_posts
+  def top_posts_params
     params.require(:post).permit(:n)
   end
 end
