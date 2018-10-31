@@ -29,6 +29,12 @@ class PostsController < ApplicationController
     end
   end
 
+  def give_ip_list
+    ips = PostService.give_ip_list
+
+    render json: ips, status: 200
+  end
+
   private
 
   def post_params

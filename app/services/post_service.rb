@@ -29,6 +29,15 @@ module PostService
       Post.where(id: top_n.map(&:first)).pluck(:header, :body, :id)
     end
 
+    def give_ip_list
+      # select all uniq ips
+      ips = Post.select(:ip).distinct.pluck(:ip)
+      # find all logins by ip and map to [[ip1, [login1, login]]...]
+      ips.map! { |item| [item, User.joins(:posts).where('posts.ip = ?', item.to_s).pluck(:login)] }
+      # clear item if logins size == 1
+      ips.reject! { |item| item.second.size == 1 }
+    end
+
     private
 
     def set_params_with_user(params)
